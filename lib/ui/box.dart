@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_puzzle_challenge/colors/colors.dart';
 import 'package:flutter_puzzle_challenge/models/models.dart';
+import 'package:flutter_puzzle_challenge/state/app_state.dart';
 import 'package:flutter_puzzle_challenge/typography/typography.dart';
+import 'package:provider/provider.dart';
 
 class PuzzleBox extends StatelessWidget {
   const PuzzleBox({
@@ -41,25 +43,27 @@ class PuzzleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: TextButton.styleFrom(
-        primary: PuzzleColors.white,
-        textStyle: PuzzleTextStyle.headline2.copyWith(
-          fontSize: tileFontSize,
-        ),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(12),
+    return Consumer<AppState>(builder: (context, appState, child) {
+      return TextButton(
+        style: TextButton.styleFrom(
+          primary: PuzzleColors.white,
+          textStyle: PuzzleTextStyle.headline2.copyWith(
+            fontSize: tileFontSize,
           ),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(12),
+            ),
+          ),
+        ).copyWith(
+          foregroundColor: MaterialStateProperty.all(PuzzleColors.white),
+          backgroundColor: MaterialStateProperty.all(PuzzleColors.black),
         ),
-      ).copyWith(
-        foregroundColor: MaterialStateProperty.all(PuzzleColors.white),
-        backgroundColor: MaterialStateProperty.all(PuzzleColors.black),
-      ),
-      onPressed: null,
-      child: Text(
-        tile.value.toString(),
-      ),
-    );
+        onPressed: () => {appState.tapTile(tile)},
+        child: Text(
+          tile.value.toString(),
+        ),
+      );
+    });
   }
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_puzzle_challenge/models/models.dart';
+import 'package:flutter_puzzle_challenge/state/app_state.dart';
 import 'package:flutter_puzzle_challenge/tools/generator.dart';
 import 'package:flutter_puzzle_challenge/ui/board.dart';
 import 'package:flutter_puzzle_challenge/ui/box.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,9 +54,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static int size = 4;
-  final Puzzle _puzzle = generatePuzzle(size);
-
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -80,12 +79,12 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Board(
-            size: size,
-            tiles: _puzzle.tiles.map((t) => PuzzleBox(tile: t)).toList()),
-      ),
+          // Center is a layout widget. It takes a single child and positions it
+          // in the middle of the parent.
+          child: ChangeNotifierProvider(
+        create: (context) => AppState(),
+        child: const Board(),
+      )),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
