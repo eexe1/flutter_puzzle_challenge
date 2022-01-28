@@ -1,7 +1,7 @@
 import 'package:flutter_puzzle_challenge/models/models.dart';
 
-/// Build a randomized, solvable puzzle of the given size.
-Puzzle generatePuzzle(int size, {bool shuffle = true}) {
+/// Build a randomized, solvable puzzle of the given size and a stage number.
+Puzzle generatePuzzle(int size, {bool shuffle = true, int stage = 1}) {
   final correctPositions = <Position>[];
   final currentPositions = <Position>[];
   final whitespacePosition = Position(x: size, y: size);
@@ -29,6 +29,7 @@ Puzzle generatePuzzle(int size, {bool shuffle = true}) {
     size,
     correctPositions,
     currentPositions,
+    stage,
   );
 
   var puzzle = Puzzle(tiles: tiles);
@@ -42,6 +43,7 @@ Puzzle generatePuzzle(int size, {bool shuffle = true}) {
         size,
         correctPositions,
         currentPositions,
+        stage,
       );
       puzzle = Puzzle(tiles: tiles);
     }
@@ -56,6 +58,7 @@ List<Tile> _getTileListFromPositions(
   int size,
   List<Position> correctPositions,
   List<Position> currentPositions,
+  int stage,
 ) {
   final whitespacePosition = Position(x: size, y: size);
   return [
@@ -69,9 +72,9 @@ List<Tile> _getTileListFromPositions(
         )
       else
         Tile(
-          value: i,
-          correctPosition: correctPositions[i - 1],
-          currentPosition: currentPositions[i - 1],
-        )
+            value: i,
+            correctPosition: correctPositions[i - 1],
+            currentPosition: currentPositions[i - 1],
+            imageAssetKey: "assets/images/puzzles/$stage/$i.png")
   ];
 }

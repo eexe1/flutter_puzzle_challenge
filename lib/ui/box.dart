@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_puzzle_challenge/colors/colors.dart';
 import 'package:flutter_puzzle_challenge/models/models.dart';
 import 'package:flutter_puzzle_challenge/state/app_state.dart';
-import 'package:flutter_puzzle_challenge/typography/typography.dart';
 import 'package:provider/provider.dart';
 
+/// {@template puzzle_box}
+/// A box contains either a puzzle tile [_PuzzleTile] or an empty box.
+/// {@endtemplate}
 class PuzzleBox extends StatelessWidget {
+  /// {@macro puzzle_box}
   const PuzzleBox({
     Key? key,
     required this.tile,
@@ -18,7 +20,7 @@ class PuzzleBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return tile.isWhitespace
         ? const SizedBox()
-        : PuzzleTile(tile: tile, tileFontSize: 14);
+        : _PuzzleTile(tile: tile, tileFontSize: 14);
   }
 }
 
@@ -26,10 +28,9 @@ class PuzzleBox extends StatelessWidget {
 /// Displays the puzzle tile associated with [tile] and
 /// the font size of [tileFontSize] based on the puzzle [state].
 /// {@endtemplate}
-@visibleForTesting
-class PuzzleTile extends StatelessWidget {
+class _PuzzleTile extends StatelessWidget {
   /// {@macro puzzle_tile}
-  const PuzzleTile({
+  const _PuzzleTile({
     Key? key,
     required this.tile,
     required this.tileFontSize,
@@ -44,25 +45,11 @@ class PuzzleTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<AppState>(builder: (context, appState, child) {
-      return TextButton(
-        style: TextButton.styleFrom(
-          primary: PuzzleColors.white,
-          textStyle: PuzzleTextStyle.headline2.copyWith(
-            fontSize: tileFontSize,
-          ),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(12),
-            ),
-          ),
-        ).copyWith(
-          foregroundColor: MaterialStateProperty.all(PuzzleColors.white),
-          backgroundColor: MaterialStateProperty.all(PuzzleColors.black),
-        ),
-        onPressed: () => {appState.tapTile(tile)},
-        child: Text(
-          tile.value.toString(),
-        ),
+      return GestureDetector(
+        child: tile.imageAssetKey != null
+            ? Image.asset(tile.imageAssetKey!)
+            : null,
+        onTap: () => {appState.tapTile(tile)},
       );
     });
   }

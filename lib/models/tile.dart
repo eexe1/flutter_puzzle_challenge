@@ -11,6 +11,7 @@ class Tile extends Equatable {
     required this.value,
     required this.correctPosition,
     required this.currentPosition,
+    this.imageAssetKey,
     this.isWhitespace = false,
   });
 
@@ -27,6 +28,9 @@ class Tile extends Equatable {
   /// Denotes if the [Tile] is the whitespace tile or not.
   final bool isWhitespace;
 
+  /// Image Asset Key
+  final String? imageAssetKey;
+
   /// Create a copy of this [Tile] with updated current position.
   Tile copyWith({required Position currentPosition}) {
     return Tile(
@@ -34,6 +38,7 @@ class Tile extends Equatable {
       correctPosition: correctPosition,
       currentPosition: currentPosition,
       isWhitespace: isWhitespace,
+      imageAssetKey: imageAssetKey,
     );
   }
 
@@ -43,5 +48,6 @@ class Tile extends Equatable {
         correctPosition,
         currentPosition,
         isWhitespace,
+        imageAssetKey != null ? imageAssetKey! : "",
       ];
 }
