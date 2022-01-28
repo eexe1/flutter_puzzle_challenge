@@ -73,12 +73,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                     onPressed: () {
                       navigateToGame();
                     },
-                    child: const Text(
+                    child: Text(
                       'Skip',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
+                      style: PuzzleTextStyle.onboardingSkip,
                     ),
                   ),
                 ),
@@ -108,12 +105,12 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                             ),
                             const SizedBox(height: 30.0),
                             Text(
-                              'Discover the Wonders of the World.',
+                              'Wonders of the World',
                               style: PuzzleTextStyle.onboardingHeadline,
                             ),
                             const SizedBox(height: 15.0),
                             Text(
-                              'Collect Wonders and explore a new world.',
+                              'Collect Wonders and explore them.',
                               style: PuzzleTextStyle.onboardingSubtitle,
                             ),
                           ],
@@ -229,16 +226,13 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
-                          children: const <Widget>[
+                          children: <Widget>[
                             Text(
                               'Next',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22.0,
-                              ),
+                              style: PuzzleTextStyle.onboardingNext,
                             ),
-                            SizedBox(width: 10.0),
-                            Icon(
+                            const SizedBox(width: 10.0),
+                            const Icon(
                               Icons.arrow_forward,
                               color: Colors.white,
                               size: 30.0,
@@ -257,15 +251,12 @@ class _OnboardingScreenState extends State<OnboardingScreen>
           ? Container(
               height: 115.0,
               width: double.infinity,
-              color: Colors.white,
+              color: const Color(0xFF439DBC),
               child: TextButton(
                 onPressed: navigateToGame,
-                child: const Text(
+                child: Text(
                   'I am ready!',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                  ),
+                  style: PuzzleTextStyle.onboardingReady,
                 ),
               ))
           : null,

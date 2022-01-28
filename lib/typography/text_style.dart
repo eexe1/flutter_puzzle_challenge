@@ -24,6 +24,33 @@ class PuzzleTextStyle {
         color: const Color(0xFFFFFFFF));
   }
 
+  /// Onboarding Next button text style
+  static TextStyle get onboardingNext {
+    return _baseTextStyle.copyWith(
+        fontSize: 22,
+        height: 1.15,
+        fontWeight: PuzzleFontWeight.regular,
+        color: const Color(0xFFFFFFFF));
+  }
+
+  /// Onboarding Skip button text style
+  static TextStyle get onboardingSkip {
+    return _baseTextStyle.copyWith(
+        fontSize: 22,
+        height: 1.15,
+        fontWeight: PuzzleFontWeight.regular,
+        color: const Color(0xFFFFFFFF));
+  }
+
+  /// Onboarding Ready button text style
+  static TextStyle get onboardingReady {
+    return _baseTextStyle.copyWith(
+        fontSize: 22,
+        height: 1.15,
+        fontWeight: PuzzleFontWeight.bold,
+        color: const Color(0xFFFFFFFF));
+  }
+
   /// Headline 1 text style
   static TextStyle get headline1 {
     return _baseTextStyle.copyWith(
