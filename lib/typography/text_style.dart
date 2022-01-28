@@ -6,6 +6,24 @@ import 'typography.dart';
 
 /// Defines text styles for the puzzle UI.
 class PuzzleTextStyle {
+  /// Onboarding Headline text style
+  static TextStyle get onboardingHeadline {
+    return _baseTextStyle.copyWith(
+        fontSize: 24,
+        height: 1.15,
+        fontWeight: PuzzleFontWeight.bold,
+        color: const Color(0xFFFFFFFF));
+  }
+
+  /// Onboarding Subtitle text style
+  static TextStyle get onboardingSubtitle {
+    return _baseTextStyle.copyWith(
+        fontSize: 20,
+        height: 1.15,
+        fontWeight: PuzzleFontWeight.regular,
+        color: const Color(0xFFFFFFFF));
+  }
+
   /// Headline 1 text style
   static TextStyle get headline1 {
     return _baseTextStyle.copyWith(

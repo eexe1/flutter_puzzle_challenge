@@ -11,7 +11,7 @@ class AppState extends ChangeNotifier {
   }
 
   void tapTile(Tile tile) {
-    if (puzzle.isTileMovable(tile)) {
+    if (puzzle.isTileMovable(tile) && !puzzle.isComplete()) {
       final mutablePuzzle = Puzzle(tiles: [...puzzle.tiles]);
       mutablePuzzle.moveTiles(tile, []);
       puzzle = mutablePuzzle.sort();

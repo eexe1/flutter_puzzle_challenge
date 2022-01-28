@@ -76,6 +76,7 @@ class Puzzle extends Equatable {
   }
 
   /// Determines if the puzzle is solvable.
+  /// Only used when generating a new puzzle.
   bool isSolvable() {
     final size = getDimension();
     final height = tiles.length ~/ size;
