@@ -151,13 +151,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            const Center(
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/images/onboarding6.png',
-                                ),
-                                height: 300.0,
-                                width: 300.0,
+                            Center(
+                              child: Lottie.asset(
+                                'assets/images/onboarding3.json',
+                                repeat: false,
+                                height: 300,
                               ),
                             ),
                             const SizedBox(height: 30.0),
