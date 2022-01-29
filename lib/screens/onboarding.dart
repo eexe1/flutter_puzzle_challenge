@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_puzzle_challenge/screens/game_screen.dart';
 import 'package:flutter_puzzle_challenge/typography/typography.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -123,13 +124,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            const Center(
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/images/onboarding2.png',
-                                ),
-                                height: 300.0,
-                                width: 300.0,
+                            Center(
+                              child: Lottie.asset(
+                                'assets/images/onboarding2.json',
+                                repeat: false,
+                                height: 300,
                               ),
                             ),
                             const SizedBox(height: 30.0),
