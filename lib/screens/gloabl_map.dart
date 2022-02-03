@@ -31,13 +31,47 @@ class _GlobalMapState extends State<GlobalMap> {
 
   @override
   Widget build(BuildContext context) {
-    return InteractiveViewer(
-        transformationController: _controller,
-        constrained: false,
-        minScale: 7,
-        maxScale: 15,
-        child: SvgPicture.asset(
-          'assets/images/worldmap.svg',
-        ));
+    return GestureDetector(
+      onTapUp: (details) => {print(details.localPosition)},
+      child: InteractiveViewer(
+          transformationController: _controller,
+          constrained: false,
+          minScale: 7,
+          maxScale: 25,
+          child: Stack(
+            children: [
+              SvgPicture.asset(
+                'assets/images/worldmap.svg',
+              ),
+              Positioned(
+                child: SvgPicture.asset(
+                  'assets/images/marker.svg',
+                ),
+                width: 1.5,
+                height: 1.5,
+                top: 66.5,
+                left: 98.5,
+              ),
+              Positioned(
+                child: SvgPicture.asset(
+                  'assets/images/marker.svg',
+                ),
+                width: 1.5,
+                height: 1.5,
+                top: 70.5,
+                left: 104,
+              ),
+              Positioned(
+                child: SvgPicture.asset(
+                  'assets/images/marker.svg',
+                ),
+                width: 1.5,
+                height: 1.5,
+                top: 79.2,
+                left: 113.4,
+              ),
+            ],
+          )),
+    );
   }
 }
