@@ -6,8 +6,15 @@ class AppState extends ChangeNotifier {
   static const int size = 4;
   late Puzzle puzzle;
 
+  /// If 0, no stage is selected.
+  late int stage = 0;
+
   AppState() {
     puzzle = generatePuzzle(size).sort();
+  }
+
+  int get dimensionSize {
+    return size;
   }
 
   void tapTile(Tile tile) {
@@ -19,7 +26,8 @@ class AppState extends ChangeNotifier {
     }
   }
 
-  int get dimensionSize {
-    return size;
+  void setStage(int stageNumber) {
+    stage = stageNumber;
+    notifyListeners();
   }
 }

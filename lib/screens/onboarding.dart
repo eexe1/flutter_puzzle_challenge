@@ -41,7 +41,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   void navigateToGame() {
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-      return const GameScreen(title: 'World Puzzle');
+      return const MainScreen(title: 'World Puzzle');
     }));
   }
 
@@ -178,13 +178,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            const Center(
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/images/onboarding6.png',
-                                ),
-                                height: 300.0,
-                                width: 300.0,
+                            Center(
+                              child: Lottie.asset(
+                                'assets/images/onboarding4.json',
+                                repeat: false,
+                                height: 300,
                               ),
                             ),
                             const SizedBox(height: 30.0),

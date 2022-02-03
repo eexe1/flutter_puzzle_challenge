@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_puzzle_challenge/screens/gloabl_map.dart';
 import 'package:flutter_puzzle_challenge/state/app_state.dart';
 import 'package:flutter_puzzle_challenge/ui/board.dart';
 import 'package:provider/provider.dart';
 
-class GameScreen extends StatefulWidget {
-  const GameScreen({Key? key, required this.title}) : super(key: key);
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -18,10 +19,10 @@ class GameScreen extends StatefulWidget {
   final String title;
 
   @override
-  State<GameScreen> createState() => _GameScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _GameScreenState extends State<GameScreen> {
+class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -32,20 +33,23 @@ class _GameScreenState extends State<GameScreen> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-          child: ChangeNotifierProvider(
-        create: (context) => AppState(),
-        child: const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Board(),
+        child: ChangeNotifierProvider(
+          create: (context) => AppState(),
+          child: Consumer<AppState>(
+            builder: (context, value, child) {
+              return value.stage == 0
+                  ? const GlobalMap()
+                  : const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Board(),
+                    );
+            },
+          ),
         ),
-      )),
+      ),
     );
   }
 }
