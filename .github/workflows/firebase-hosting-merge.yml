@@ -13,13 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: dart-lang/setup-dart@v1
-      - name: Print dart version
-        shell: bash
-        run: dart --version
       - uses: subosito/flutter-action@v2.3.0
         with:
           flutter-version: "2.8.0"
           channel: "stable"
+      - name: Print dart version
+        shell: bash
+        run: dart --version
       - run: flutter build web
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
