@@ -17,6 +17,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   final int _numPages = 4;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
+  late final AnimationController _animationController;
+
+  final Map<int, Duration> animationDuration = {};
 
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
@@ -43,6 +46,24 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
       return const MapScreen();
     }));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(vsync: this);
+    _pageController.addListener(() {
+      if ([1].contains(_pageController.page)) {
+        var page = _pageController.page?.toInt();
+        // when page scrolling is done
+        if (page != 0 && animationDuration[page] != null) {
+          _animationController.reset();
+          _animationController.duration = animationDuration[page];
+          _animationController.forward();
+        }
+      }
+    });
   }
 
   @override
@@ -127,8 +148,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                             Center(
                               child: Lottie.asset(
                                 'assets/images/onboarding2.json',
-                                repeat: false,
                                 height: 300,
+                                controller: _animationController,
+                                onLoaded: (composition) {
+                                  animationDuration[1] = composition.duration;
+                                },
                               ),
                             ),
                             const SizedBox(height: 30.0),
@@ -154,8 +178,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                             Center(
                               child: Lottie.asset(
                                 'assets/images/onboarding3.json',
-                                repeat: false,
                                 height: 300,
+                                repeat: false,
                               ),
                             ),
                             const SizedBox(height: 30.0),
@@ -181,8 +205,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                             Center(
                               child: Lottie.asset(
                                 'assets/images/onboarding4.json',
-                                repeat: false,
                                 height: 300,
+                                repeat: false,
                               ),
                             ),
                             const SizedBox(height: 30.0),
