@@ -9,10 +9,6 @@ class AppState extends ChangeNotifier {
   /// If 0, no stage is selected.
   late int stage = 0;
 
-  AppState() {
-    puzzle = generatePuzzle(size).sort();
-  }
-
   int get dimensionSize {
     return size;
   }
@@ -28,6 +24,11 @@ class AppState extends ChangeNotifier {
 
   void setStage(int stageNumber) {
     stage = stageNumber;
+    _startPuzzle(stageNumber);
     notifyListeners();
+  }
+
+  void _startPuzzle(int stageNumber) {
+    puzzle = generatePuzzle(size, stage: stageNumber).sort();
   }
 }

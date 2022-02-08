@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_puzzle_challenge/screens/game_screen.dart';
+import 'package:flutter_puzzle_challenge/screens/map_screen.dart';
 import 'package:flutter_puzzle_challenge/typography/typography.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
@@ -41,7 +41,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   void navigateToGame() {
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-      return const MainScreen(title: 'World Puzzle');
+      return const MapScreen();
     }));
   }
 

@@ -12,10 +12,12 @@ class Board extends StatelessWidget {
   const Board({
     Key? key,
     this.spacing = 8,
+    required this.stage,
   }) : super(key: key);
 
   /// The spacing between each tile from [tiles].
   final double spacing;
+  final int stage;
 
   @override
   Widget build(BuildContext context) {
