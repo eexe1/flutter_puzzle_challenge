@@ -24,16 +24,48 @@ class _MapScreenState extends State<MapScreen> {
       appBar: AppBar(
         title: const Text('World Puzzle'),
       ),
-      body: Center(
-        child: ChangeNotifierProvider(
-          create: (context) => appState,
-          child: Consumer<AppState>(
-            builder: (context, value, child) {
-              return const GlobalMap();
-            },
+      body: Column(children: [
+        Expanded(
+          child: ChangeNotifierProvider(
+            create: (context) => appState,
+            child: Consumer<AppState>(
+              builder: (context, value, child) {
+                return const GlobalMap();
+              },
+            ),
           ),
+          flex: 5,
         ),
-      ),
+        Expanded(
+          child: ListView(
+            children: const [
+              Padding(
+                child: Image(
+                  image: NetworkImage(
+                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                ),
+                padding: EdgeInsets.all(24.0),
+              ),
+              Padding(
+                child: Image(
+                  image: NetworkImage(
+                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                ),
+                padding: EdgeInsets.all(24.0),
+              ),
+              Padding(
+                child: Image(
+                  image: NetworkImage(
+                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                ),
+                padding: EdgeInsets.all(24.0),
+              ),
+            ],
+            scrollDirection: Axis.horizontal,
+          ),
+          flex: 3,
+        )
+      ]),
     );
   }
 }
