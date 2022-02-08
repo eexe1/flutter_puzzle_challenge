@@ -13,9 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: dart-lang/setup-dart@v1
-      - name: Print DART_HOME
+      - name: Print dart version
         shell: bash
-        run: echo "Dart SDK installed in $DART_HOME"
+        run: dart --version
       - uses: subosito/flutter-action@v2.3.0
         with:
           flutter-version: "2.8.0"
