@@ -28,7 +28,9 @@ Puzzle generatePuzzle(int size, {bool shuffle = true, int stage = 1}) {
   var tiles = _getTileListFromPositions(
     size,
     correctPositions,
-    currentPositions,
+    correctPositions,
+    // for testing
+    // currentPositions,
     stage,
   );
 
@@ -37,16 +39,16 @@ Puzzle generatePuzzle(int size, {bool shuffle = true, int stage = 1}) {
   if (shuffle) {
     // Assign the tiles new current positions until the puzzle is solvable and
     // zero tiles are in their correct position.
-    while (!puzzle.isSolvable() || puzzle.getNumberOfCorrectTiles() != 0) {
-      currentPositions.shuffle();
-      tiles = _getTileListFromPositions(
-        size,
-        correctPositions,
-        currentPositions,
-        stage,
-      );
-      puzzle = Puzzle(tiles: tiles);
-    }
+    // while (!puzzle.isSolvable() || puzzle.getNumberOfCorrectTiles() != 0) {
+    //   currentPositions.shuffle();
+    //   tiles = _getTileListFromPositions(
+    //     size,
+    //     correctPositions,
+    //     currentPositions,
+    //     stage,
+    //   );
+    //   puzzle = Puzzle(tiles: tiles);
+    // }
   }
 
   return puzzle;
@@ -65,15 +67,20 @@ List<Tile> _getTileListFromPositions(
     for (int i = 1; i <= size * size; i++)
       if (i == size * size)
         Tile(
-          value: i,
-          correctPosition: whitespacePosition,
-          currentPosition: currentPositions[i - 1],
-          isWhitespace: true,
-        )
+            value: i,
+            correctPosition: whitespacePosition,
+            // for testing
+            // currentPosition: whitespacePosition,
+            currentPosition: currentPositions[i - 1],
+            isWhitespace: true,
+            imageAssetKey:
+                "assets/images/puzzles/$stage/${i.toString().padLeft(2, '0')}.png")
       else
         Tile(
             value: i,
             correctPosition: correctPositions[i - 1],
+            // for testing
+            // currentPosition: correctPositions[i - 1],
             currentPosition: currentPositions[i - 1],
             imageAssetKey:
                 "assets/images/puzzles/$stage/${i.toString().padLeft(2, '0')}.png")

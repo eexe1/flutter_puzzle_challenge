@@ -42,6 +42,16 @@ class Tile extends Equatable {
     );
   }
 
+  Tile copyWithWhitespace({required bool isWhitespace}) {
+    return Tile(
+      value: value,
+      correctPosition: correctPosition,
+      currentPosition: currentPosition,
+      isWhitespace: isWhitespace,
+      imageAssetKey: imageAssetKey,
+    );
+  }
+
   @override
   List<Object> get props => [
         value,

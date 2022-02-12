@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_puzzle_challenge/models/models.dart';
 
 /// {@template puzzle}
@@ -56,7 +57,13 @@ class Puzzle extends Equatable {
 
   /// Determines if the puzzle is completed.
   bool isComplete() {
-    return (tiles.length - 1) - getNumberOfCorrectTiles() == 0;
+    final isComplete = (tiles.length - 1) - getNumberOfCorrectTiles() == 0;
+    if (isComplete) {
+      print("complete");
+    } else {
+      print("not complete");
+    }
+    return isComplete;
   }
 
   /// Determines if the tapped tile can move in the direction of the whitespace
