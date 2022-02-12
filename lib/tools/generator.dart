@@ -75,6 +75,7 @@ List<Tile> _getTileListFromPositions(
             value: i,
             correctPosition: correctPositions[i - 1],
             currentPosition: currentPositions[i - 1],
-            imageAssetKey: "assets/images/puzzles/$stage/$i.png")
+            imageAssetKey:
+                "assets/images/puzzles/$stage/${i.toString().padLeft(2, '0')}.png")
   ];
 }
