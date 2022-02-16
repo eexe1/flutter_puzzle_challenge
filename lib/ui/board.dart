@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
+import 'package:flutter_puzzle_challenge/screens/history_screen.dart';
+import 'package:flutter_puzzle_challenge/screens/map_screen.dart';
 import 'package:flutter_puzzle_challenge/state/app_state.dart';
 import 'package:flutter_puzzle_challenge/ui/box.dart';
 import 'package:provider/provider.dart';
@@ -42,22 +44,32 @@ class Board extends StatelessWidget {
         boxes.add(PuzzleBox(tile: lastTile));
 
         _timer = Timer(
-          const Duration(seconds: 5),
+          const Duration(seconds: 2),
           () {
-            print('timesup');
             showDialog<String>(
                 context: context,
                 builder: (BuildContext context) => AlertDialog(
-                      title: const Text('AlertDialog Title'),
-                      content: const Text('AlertDialog description'),
+                      title: const Text('Congratulations'),
+                      content: const Text(
+                          "You have won! Now let's learn the history."),
                       actions: <Widget>[
                         TextButton(
-                          onPressed: () => Navigator.pop(context, 'Cancel'),
-                          child: const Text('Cancel'),
-                        ),
-                        TextButton(
-                          onPressed: () => Navigator.pop(context, 'OK'),
-                          child: const Text('OK'),
+                          onPressed: () {
+                            Navigator.pop(context, 'OK');
+                            Navigator.pop(context, 'OK');
+                            // Navigator.pushReplacement(context, 'OK');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChangeNotifierProvider.value(
+                                          value: appState,
+                                          builder: (context, child) {
+                                            return const HistoryScreen();
+                                          },
+                                        )));
+                          },
+                          child: const Text('Sure'),
                         ),
                       ],
                     ));

@@ -54,6 +54,8 @@ class _GlobalMapState extends State<GlobalMap>
     ),
   ];
 
+  static const 
+
   @override
   void initState() {
     _controller = TransformationController();
@@ -61,7 +63,7 @@ class _GlobalMapState extends State<GlobalMap>
         Vector4(15.0, 0.0, 0.0, 0.0),
         Vector4(0.0, 15.0, 0.0, 0.0),
         Vector4(0.0, 0.0, 15.0, 0.0),
-        Vector4(-1385.6412341565913, -657.1999161587044, 0.0, 1.0));
+        Vector4(-1197.8060290784667, -886.7837479458145, 0.0, 1.0));
     _animationController = AnimationController(
         duration: const Duration(milliseconds: 500), vsync: this);
     _animation = Tween<double>(begin: 0, end: 300).animate(_animationController)
