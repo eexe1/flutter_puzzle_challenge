@@ -28,9 +28,9 @@ Puzzle generatePuzzle(int size, {bool shuffle = true, int stage = 1}) {
   var tiles = _getTileListFromPositions(
     size,
     correctPositions,
-    correctPositions,
+    // correctPositions,
     // for testing
-    // currentPositions,
+    currentPositions,
     stage,
   );
 

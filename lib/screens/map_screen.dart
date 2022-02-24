@@ -12,6 +12,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   final appState = AppState();
+  int? selectedListIndex;
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -25,42 +26,26 @@ class _MapScreenState extends State<MapScreen> {
         title: const Text('World Puzzle'),
       ),
       body: Column(children: [
-        Expanded(
-          child: ChangeNotifierProvider(
+        ChangeNotifierProvider(
             create: (context) => appState,
-            child: Consumer<AppState>(
-              builder: (context, value, child) {
-                return const GlobalMap();
-              },
-            ),
-          ),
-          flex: 5,
-        ),
+            child: const Expanded(
+              child: GlobalMap(),
+              flex: 5,
+            )),
         Expanded(
           child: ListView(
-            children: const [
-              Padding(
-                child: Image(
-                  image: NetworkImage(
-                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
-                ),
-                padding: EdgeInsets.all(24.0),
-              ),
-              Padding(
-                child: Image(
-                  image: NetworkImage(
-                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
-                ),
-                padding: EdgeInsets.all(24.0),
-              ),
-              Padding(
-                child: Image(
-                  image: NetworkImage(
-                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
-                ),
-                padding: EdgeInsets.all(24.0),
-              ),
-            ],
+            children: [1, 2, 3]
+                .map((index) => Padding(
+                      child: GestureDetector(
+                        child: Image.asset(
+                            'assets/images/puzzles/complete/$index.jpeg'),
+                        onTap: () {
+                          selectedListIndex = index;
+                        },
+                      ),
+                      padding: const EdgeInsets.all(24.0),
+                    ))
+                .toList(),
             scrollDirection: Axis.horizontal,
           ),
           flex: 3,

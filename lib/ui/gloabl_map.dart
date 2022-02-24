@@ -54,7 +54,23 @@ class _GlobalMapState extends State<GlobalMap>
     ),
   ];
 
-  static const 
+  final List<Matrix4> locationViews = [
+    Matrix4.columns(
+        Vector4(15.0, 0.0, 0.0, 0.0),
+        Vector4(0.0, 15.0, 0.0, 0.0),
+        Vector4(0.0, 0.0, 15.0, 0.0),
+        Vector4(-120.8060290784667, -886.7837479458145, 0.0, 1.0)),
+    Matrix4.columns(
+        Vector4(15.0, 0.0, 0.0, 0.0),
+        Vector4(0.0, 15.0, 0.0, 0.0),
+        Vector4(0.0, 0.0, 15.0, 0.0),
+        Vector4(-150.8060290784667, -886.7837479458145, 0.0, 1.0)),
+    Matrix4.columns(
+        Vector4(15.0, 0.0, 0.0, 0.0),
+        Vector4(0.0, 15.0, 0.0, 0.0),
+        Vector4(0.0, 0.0, 15.0, 0.0),
+        Vector4(-100.8060290784667, -886.7837479458145, 0.0, 1.0)),
+  ];
 
   @override
   void initState() {
